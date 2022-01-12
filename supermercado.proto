@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package supermercado;
+
+message Produto{
+  int32 id = 1;
+  string nome = 2;
+  double preco = 3;
+}
+
+message ListaDeProdutos {
+  repeated Produto produtos = 1;
+}
+
+message ItemCarrinho {
+  int32 id = 1;
+  Produto produto = 2;
+  int32 quantidade = 3;
+}
+
+message Carrinho {
+  repeated ItemCarrinho itensCarrinho = 1;
+}
+
+message Pedido {
+  int32 id = 1;
+  ListaDeProdutos produtos = 2;
+  string status = 3;
+}
+
+message ListaDePedidos {
+  repeated Pedido pedidos = 1;
+}
+
+message DadosRequisicao {
+  int32 id = 1;
+  optional int32 quantidade = 2;
+}
+
+message Resposta {
+  string mensagem = 1;
+}
+
+message Vazia { }
+
+service SupermercadoService {
+  rpc ListarProdutos (Vazia) returns (ListaDeProdutos);
+  rpc AdicionarCarrinho (DadosRequisicao) returns (Resposta);
+  rpc RemoverCarrinho (DadosRequisicao) returns (Resposta);
+  rpc ListarCarrinho (Vazia) returns (Carrinho);
+  rpc Pagar (Vazia) returns (Resposta);
+  rpc SolicitarEntrega (DadosRequisicao) returns (Resposta);
+  rpc ListarPedidos (Vazia) returns (ListaDePedidos);
+}
