@@ -124,7 +124,7 @@ server.addService(supermercadoService.service, {
     }
   },
   ListarPedidos: (call, callback) => {
-    callback(null, { pedidos: pedidos });
+    callback(null, { pedidos: JSON.stringify(pedidos) });
   }
 });
 

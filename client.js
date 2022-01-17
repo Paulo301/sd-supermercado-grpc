@@ -30,11 +30,11 @@ console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
 
 rl.on('line', line => {
   if(isInMenu){
@@ -53,15 +53,17 @@ rl.on('line', line => {
             mensagem += `Id: ${produto.id} \nNome: ${produto.nome} \nPreço: ${produto.preco}\n\n`;
           });
           console.log(mensagem);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else if(line.trim()==="2"){
@@ -88,19 +90,21 @@ rl.on('line', line => {
 
           mensagem2 += `Total: ${total} \n`;
 
-          if(carrinho.length === 0){
+          if(itensCarrinho.length === 0){
             mensagem2 = "Carrinho vazio\n"
           }
           console.log(mensagem2);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else if(line.trim()==="5"){
@@ -110,26 +114,29 @@ rl.on('line', line => {
         } else {
           const { mensagem } = result;
           console.log(mensagem);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else if(line.trim()==="6"){
       console.log("Digite a id do pedido para solicitar a entrega");
     } else if(line.trim()==="7"){
-      client.ListarCarrinho({}, (err, result) => {
+      client.ListarPedidos({}, (err, result) => {
         if (err) {
           console.log("Erro: " + err);
         } else {
-          const { pedidos } = result;
+          const { pedidos: temp } = result;
           let mensagem3 = "";
+          const pedidos = JSON.parse(temp);
 
           pedidos.forEach((pedido) => {
             let tempProdutos = "";
@@ -153,15 +160,17 @@ rl.on('line', line => {
             mensagem3 = "Sem pedidos registrados\n"
           }
           console.log(mensagem3);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else {
@@ -179,15 +188,17 @@ rl.on('line', line => {
         } else {
           const { mensagem } = result;
           console.log(mensagem);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else if(menuOption==="3"){
@@ -199,15 +210,17 @@ rl.on('line', line => {
         } else {
           const { mensagem } = result;
           console.log(mensagem);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     } else if(menuOption==="6"){
@@ -219,15 +232,17 @@ rl.on('line', line => {
         } else {
           const { mensagem } = result;
           console.log(mensagem);
+          menuOption = "";
+          isInMenu = true;
           console.log("Digite:"+
                 "\n>>>1 -> para listar os produtos"+
                 "\n>>>2 -> para adicionar produtos no carrinho"+
                 "\n>>>3 -> para remover produtos do carrinho"+
-                "\n>>>4 -> para os produtos no carrinho"+
+                "\n>>>4 -> para listar os produtos no carrinho"+
                 "\n>>>5 -> para pagar os produtos no carrinho"+
                 "\n>>>6 -> para solicitar a entrega de um pedido"+
-                "\n>>>7 -> para listar os pedidos"+
-                "\n>>>8 -> para sair");
+                "\n>>>7 -> para listar os pedidos"
+                );
         }
       });
     }
